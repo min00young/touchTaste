@@ -15,7 +15,7 @@ exports.list = async (req, res) => {
       .sort({ _id: -1 })
       .limit(9);
 
-    res.send({ message: 'list success', markets, marketsCnt });
+    res.send({ message: 'success', markets, marketsCnt });
   } catch (e) {
     console.error(e);
     res.status(500).send();

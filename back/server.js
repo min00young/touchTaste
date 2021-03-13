@@ -33,7 +33,7 @@ mongoose
     console.log(e);
   });
 
-app.set('port', process.env.PORT || 3050);
+app.set('port', process.env.PORT || 8000);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(morgan('combined'));
@@ -43,21 +43,21 @@ if (process.env.NODE_ENV === 'production') {
   app.use(morgan('dev'));
 }
 
-app.use(cookieParser(process.env.COOKIE_ID));
+// app.use(cookieParser(process.env.COOKIE_ID));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  session({
-    resave: false,
-    saveUninitialized: false,
-    secret: process.env.SESSION_ID,
-    cookie: {
-      httpOnly: true,
-    },
-  })
-);
+// app.use(
+//   session({
+//     resave: false,
+//     saveUninitialized: false,
+//     secret: process.env.SESSION_ID,
+//     cookie: {
+//       httpOnly: true,
+//     },
+//   })
+// );
 
 app.use(express.static(path.join(__dirname, 'public')));
 
