@@ -22,7 +22,7 @@ require('dotenv').config();
 
 mongoose
   .connect(process.env.MONGO_URI, {
-    dbName: 'FE',
+    dbName: 'touchTaste',
     useNewUrlParser: true,
     useFindAndModify: false,
   })

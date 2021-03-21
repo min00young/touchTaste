@@ -1,15 +1,17 @@
 {
-  "name": "fenotify",
+  "name": "touchTaste app",
   "version": "1.0.0",
-  "description": "comunity app for front end developer",
+  "description": "touchTaste app",
   "main": "index.js",
   "scripts": {
+    "start": "pm2 start server.js",
     "dev": "nodemon server.js",
-    "start": "pm2 start server.js"
+    "project": "concurrently \"npm run dev\" \"cd ../front && npm run start\""
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "concurrently": "^6.0.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",

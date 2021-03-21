@@ -1,0 +1,6 @@
+# 패키지폴더
+/back/node_modules
+/front/node_modules
+
+# DB설정
+/back/.env
