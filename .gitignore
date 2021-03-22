@@ -2,5 +2,6 @@
 /back/node_modules
 /front/node_modules
 
-# DB설정
+# dotenv 설정
 /back/.env
+/front/.env

@@ -1,17 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { applyMiddleware, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { BrowserRouter } from 'react-router-dom';
+import { createLogger } from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css';
+import rootReducer, { rootSaga } from './modules';
+
+require('dotenv').config();
+
+const logger = createLogger();
+const sagaMiddleware = createSagaMiddleware();
+
+const store =
+  process.env.REACT_APP_NODE_ENV === 'production'
+    ? createStore(rootReducer, applyMiddleware(sagaMiddleware))
+    : createStore(rootReducer, composeWithDevTools(applyMiddleware(logger, sagaMiddleware)));
+
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
+  , document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
